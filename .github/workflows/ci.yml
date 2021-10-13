@@ -43,9 +43,10 @@ jobs:
 
     - name: Install golang-migrate
       run: |
-        curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.0/migrate.linux-amd64.tar.gz | tar xvz
-        sudo mv ./migrate.linux-amd64 /usr/bin/migrate
-        which migrate
+        curl -L https://packagecloud.io/golang-migrate/migrate/gpgkey | sudo apt-key add -
+        sudo sh -c 'echo "deb https://packagecloud.io/golang-migrate/migrate/ubuntu/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/migrate.list'
+        sudo apt-get update
+        sudo apt-get install -y migrate
 
     - name: Run migrations
       run: make migrateup
