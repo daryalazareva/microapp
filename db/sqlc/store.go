@@ -48,8 +48,6 @@ func (s *Store) execTx(ctx context.Context, fn func(*Queries) error) error {
 func (s *Store) ChangePasswordTx(ctx context.Context, email string, newpassword string) error {
 	err := s.execTx(ctx, func(q *Queries) error {
 
-		s.db.SetMaxOpenConns(1000)
-
 		_, err := q.GetUserForUpdate(ctx, email)
 		if err != nil {
 			return err
