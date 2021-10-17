@@ -37,7 +37,7 @@ func TestChangePasswordTx(t *testing.T) {
 	require.NoError(t, err)
 
 	//run concurrent cases
-	n := 50
+	n := 49
 	errs1 := make(chan error)
 	errs2 := make(chan error)
 
@@ -63,7 +63,7 @@ func TestChangePasswordTx(t *testing.T) {
 	deleteTempUser(t)
 }
 
-/*func TestCreateRecordUser(t *testing.T) {
+func TestCreateRecordUser(t *testing.T) {
 	store := NewStore(testDB)
 	arg := CreateUserParams{
 		Email:             "user@example.org",
@@ -97,4 +97,4 @@ func TestGetRecordUser(t *testing.T) {
 	require.NotZero(t, u2.ID)
 
 	deleteTempUser(t)
-}*/
+}
